@@ -19,13 +19,22 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import addVue from '../components/add.vue'
 import Exception from '../class/Exception'
-import axios from 'axios'
+import { getexception, updateexception, delexception } from '../utils/request'
+
 interface ExceptionData {
     content: string
 }
+const tableData = ref('')
+onMounted(() => {
+    getexception().then((res) => {
+        tableData.value = res.data
+        console.log(res)
+    })
+})
+
 const total = ref(100)
 const search = ref('')
 const isShow = ref(false)
@@ -69,20 +78,21 @@ const save = () => {
     // info.value = new Exception()
 }
 
-const tableData: ExceptionData[] = [
-    {
-        content: '异常01'
-    },
-    {
-        content: '异常02'
-    },
-    {
-        content: '异常03'
-    },
-    {
-        content: '异常04'
-    },
-]
+
+// const tableData: ExceptionData[] = [
+//     {
+//         content: '异常01'
+//     },
+//     {
+//         content: '异常02'
+//     },
+//     {
+//         content: '异常03'
+//     },
+//     {
+//         content: '异常04'
+//     },
+// ]
 </script>
 
 <style></style>
