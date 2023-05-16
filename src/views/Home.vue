@@ -20,8 +20,9 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import addVue from '../components/Add.vue'
+import addVue from '../components/add.vue'
 import Exception from '../class/Exception'
+import axios from 'axios'
 interface ExceptionData {
     content: string
 }
