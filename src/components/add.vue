@@ -19,7 +19,7 @@ const props = defineProps({
     isShow: Boolean,
     info: Exception
 })
-console.log(props.info)
+// console.log(props.info)
 const dialogVisible = computed(() => props.isShow)
 // const form: Ref<Exception> = ref<Exception>({
 //     content: ''
@@ -34,7 +34,12 @@ const close = () => {
 }
 
 const save = () => {
-    emits("save")
+    const sendstring = JSON.stringify({
+        old_content: props.info?.content.toString(),
+        content: form.value.content.toString()
+    })
+
+    emits("save", sendstring)
 }
 watch(() => props.info, (newInfo) => {
     if (newInfo) {
